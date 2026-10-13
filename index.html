@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پێگەی سەرەکی بەشی گەنجانی مەلبەندی ١ی سلێمانی</title>
-    <!-- Google Font: Noto Kufi Arabic -->
+    <title>سیستەمی تۆمارکردنی مەڵبەندی ١ی سلێمانی - بەشی گەنجان</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -17,7 +15,6 @@
             --bg-color: #f4f9f4;
             --white: #ffffff;
             --text-dark: #212529;
-            --gray: #6c757d;
             --border-color: #ced4da;
             --danger-red: #c9184a;
         }
@@ -40,234 +37,132 @@
         header {
             background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
             color: var(--white);
-            padding: 2.5rem 1rem;
+            padding: 2rem 1rem;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        /* Circular EY Logo */
         .ey-logo {
-            width: 75px;
-            height: 75px;
+            width: 70px;
+            height: 70px;
             background: var(--white);
             color: var(--primary-green);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 900;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             border: 3px solid var(--accent-green);
-            letter-spacing: 1px;
         }
 
         header h1 {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 0.2rem;
-        }
-
-        .counters-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 1rem;
-        }
-
-        .counter-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .counter-badge span {
-            font-weight: 700;
-            color: var(--light-green);
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 2rem auto;
             padding: 0 1rem;
             flex: 1;
             width: 100%;
         }
 
-        /* Home View Buttons */
-        .home-view {
-            text-align: center;
-            padding: 2rem 1rem;
-        }
-
-        .home-view h2 {
-            margin-bottom: 2rem;
-            color: var(--primary-green);
-            font-size: 1.3rem;
-        }
-
-        .menu-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-            justify-content: center;
-        }
-
-        .menu-btn {
-            background: var(--white);
-            border: 2px solid var(--secondary-green);
-            color: var(--primary-green);
-            padding: 2rem 1.5rem;
-            border-radius: 16px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            max-width: 350px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .menu-btn i {
-            font-size: 2.3rem;
-            color: var(--secondary-green);
-        }
-
-        .menu-btn:hover {
-            background: var(--secondary-green);
-            color: var(--white);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(45, 106, 79, 0.2);
-        }
-
-        .menu-btn:hover i {
-            color: var(--white);
-        }
-
-        .admin-trigger-btn {
-            background: transparent;
-            border: 1px dashed var(--secondary-green);
-            color: var(--secondary-green);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .admin-trigger-btn:hover {
-            background: var(--light-green);
-        }
-
-        /* Form Card Container */
-        .form-container {
+        .card {
             background: var(--white);
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             overflow: hidden;
-            display: none;
-            margin-bottom: 2rem;
             border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
         }
 
-        .form-banner {
+        .card-header {
             background: var(--primary-green);
             color: var(--white);
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
         }
 
-        .form-banner h2 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
+        .card-header h2 {
             color: var(--light-green);
+            font-size: 1.5rem;
         }
 
-        .form-banner p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .form-body {
-            padding: 2.5rem;
+        .card-body {
+            padding: 2rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.3rem;
         }
 
         label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
             color: var(--primary-green);
+            font-size: 0.95rem;
         }
 
         input[type="text"],
         input[type="tel"],
-        select,
-        textarea {
+        input[type="password"],
+        select {
             width: 100%;
-            padding: 12px 15px;
+            padding: 11px 14px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
+            font-size: 0.95rem;
             background-color: #fafafa;
+            transition: all 0.3s;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: var(--accent-green);
             background-color: var(--white);
             box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.15);
         }
 
-        .file-upload-box {
+        .file-box {
             border: 2px dashed var(--border-color);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             text-align: center;
             background: #fafafa;
             cursor: pointer;
+            margin-top: 5px;
         }
 
-        .file-upload-box input {
+        .file-box input {
             display: none;
         }
 
-        .file-name-display {
-            font-size: 0.85rem;
+        .file-name {
+            font-size: 0.8rem;
             color: var(--secondary-green);
-            margin-top: 5px;
+            margin-top: 4px;
             font-weight: bold;
         }
 
-        .team-box-container {
+        #teamMembersBox {
             background: var(--light-green);
-            padding: 1.5rem;
+            padding: 1.2rem;
             border-radius: 10px;
             border: 1px solid #b7e4c7;
             margin-top: 1rem;
             display: none;
+        }
+
+        .team-input {
+            margin-bottom: 0.8rem;
         }
 
         .submit-btn {
@@ -275,8 +170,8 @@
             color: var(--white);
             border: none;
             width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
+            padding: 14px;
+            font-size: 1.05rem;
             font-weight: 700;
             border-radius: 8px;
             cursor: pointer;
@@ -288,67 +183,267 @@
             background: var(--primary-green);
         }
 
-        .back-nav-btn {
-            background: var(--light-green);
-            border: 1px solid var(--secondary-green);
-            color: var(--primary-green);
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .admin-panel-toggle {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .admin-btn {
+            background: transparent;
+            border: 1px dashed var(--secondary-green);
+            color: var(--secondary-green);
             padding: 8px 16px;
             border-radius: 8px;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            transition: 0.2s;
+            cursor: pointer;
+            font-size: 0.9rem;
         }
 
-        .back-nav-btn:hover {
-            background: var(--secondary-green);
-            color: var(--white);
+        .admin-btn:hover {
+            background: var(--light-green);
         }
 
-        /* Admin Dashboard View */
-        .admin-view {
+        #adminSection {
             display: none;
-            background: var(--white);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .id-card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
             margin-top: 1.5rem;
-        }
-
-        .digital-id-card {
-            background: linear-gradient(135deg, #ffffff, #f0f7f4);
-            border: 2px solid var(--secondary-green);
-            border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
         }
     </style>
 </head>
 <body>
+
     <header>
         <div class="ey-logo">EY</div>
-        <h1>پێگەی سەرەکی بەشی گەنجانی مەلبەندی ١ی سلێمانی</h1>
+        <h1>سیستەمی تۆمارکردنی بەشی گەنجانی مەڵبەندی ١ی سلێمانی</h1>
     </header>
+
     <div class="container">
-        <div class="home-view">
-            <h2>بەخێربێن بۆ سیستەمی تۆمارکردن</h2>
-            <div class="menu-buttons">
-                <button class="menu-btn">
-                    <i class="fa-solid fa-user-plus"></i>
-                    تۆمارکردنی نوێ
-                </button>
+        <div class="card">
+            <div class="card-header">
+                <h2>فۆرمی ئەندامێتی</h2>
+            </div>
+            <div class="card-body">
+                <form id="regForm" onsubmit="submitData(event)">
+                    
+                    <div class="form-group">
+                        <label>ناوی تەواو (سیانی):</label>
+                        <input type="text" id="fullName" required placeholder="ناوی سیانی بنووسە">
+                    </div>
+
+                    <div class="form-group">
+                        <label>ژمارەی مۆبایل:</label>
+                        <input type="tel" id="phone" required placeholder="0750XXXXXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label>شار:</label>
+                        <select id="city" required>
+                            <option value="">شار هەڵبژێرە</option>
+                            <option value="سلێمانی">سلێمانی</option>
+                            <option value="چەمچەماڵ">چەمچەماڵ</option>
+                            <option value="دەربەندیخان">دەربەندیخان</option>
+                            <option value="کەلار">کەلار</option>
+                            <option value="ڕانیە">ڕانیە</option>
+                            <option value="قەڵادزێ">قەڵادزێ</option>
+                            <option value="شارەزوور">شارەزوور</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ناوی کۆمیتە:</label>
+                        <input type="text" id="committee" required placeholder="ناوی کۆمیتە بنووسە">
+                    </div>
+
+                    <div class="form-group">
+                        <label>ژمارەی کارتی دەنگدان:</label>
+                        <input type="text" id="voterCard" required placeholder="ژمارەی کارتی دەنگدان">
+                    </div>
+
+                    <div class="form-group">
+                        <label>بنکەی دەنگدان:</label>
+                        <input type="text" id="voterStation" required placeholder="ناوی بنکەی دەنگدان">
+                    </div>
+
+                    <div class="form-group">
+                        <label>جۆری ئەندامێتی:</label>
+                        <select id="membershipType" onchange="checkMembershipType()" required>
+                            <option value="ئەندام">ئەندام</option>
+                            <option value="ئەندامی چالاک">ئەندامی چالاک</option>
+                            <option value="ئەندامی پشتیوانی">ئەندامی پشتیوانی</option>
+                            <option value="بەرپرسی تیم">بەرپرسی تیم</option>
+                        </select>
+                    </div>
+
+                    <!-- ١٠ تێکست بۆکس بۆ بەرپرسی تیم -->
+                    <div id="teamMembersBox">
+                        <label style="color: var(--primary-green); margin-bottom: 10px; display: block; font-weight: 700;">ناوی تەواوی هەر ١٠ ئەندامی تیمەکەت بنووسە:</label>
+                        <div id="tenInputsContainer"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>وێنەی پێشەوەی کارتی دەنگدان:</label>
+                        <div class="file-box" onclick="document.getElementById('frontCard').click()">
+                            <i class="fa-solid fa-id-card"></i>
+                            <p>دابەزاندنی پێشەوەی کارت</p>
+                            <input type="file" id="frontCard" accept="image/*" onchange="showFileName(this, 'frontName')">
+                            <div id="frontName" class="file-name"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>وێنەی پشتەوەی کارتی دەنگدان:</label>
+                        <div class="file-box" onclick="document.getElementById('backCard').click()">
+                            <i class="fa-solid fa-id-card"></i>
+                            <p>دابەزاندنی پشتەوەی کارت</p>
+                            <input type="file" id="backCard" accept="image/*" onchange="showFileName(this, 'backName')">
+                            <div id="backName" class="file-name"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">ناردنی زانیارییەکان</button>
+                </form>
+
+                <div class="admin-panel-toggle">
+                    <button class="admin-btn" onclick="toggleAdminPanel()">پیشاندانی ئەنجامەکان (تایبەت بە بەڕێوەبەر)</button>
+                </div>
+
+                <div id="adminSection">
+                    <h3>داخڵبوون بۆ بەشی ئەنجامەکان</h3>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <input type="password" id="adminPassword" placeholder="پاسۆرد بنووسە (نموونە: 7788)">
+                        <button class="submit-btn" style="padding: 10px; margin-top: 8px;" onclick="checkAdminPassword()">کردنەوەی ئەنجامەکان</button>
+                    </div>
+                    <div id="resultsView" style="margin-top: 15px; display:none;">
+                        <p style="color: var(--secondary-green); font-weight: bold; margin-bottom: 10px;">بە سەرکەوتوویی کرایەوە! دەتوانیت ڕاستەوخۆ سەیری Google Sheetـەکەت بکەیت:</p>
+                        <a href="https://docs.google.com/spreadsheets" target="_blank" style="display:inline-block; background: var(--secondary-green); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold;">کردنەوەی گوگڵ داتا شیت 📊</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+
+    <script>
+        // دروستکردنی ١٠ تێکست بۆکس بۆ بەرپرسی تیم
+        const tenContainer = document.getElementById('tenInputsContainer');
+        for (let i = 1; i <= 10; i++) {
+            let div = document.createElement('div');
+            div.className = 'team-input';
+            div.innerHTML = `<input type="text" class="team-member-input" placeholder="ناوی ئەندامی ژمارە ${i}">`;
+            tenContainer.appendChild(div);
+        }
+
+        function checkMembershipType() {
+            const type = document.getElementById('membershipType').value;
+            const box = document.getElementById('teamMembersBox');
+            const teamInputs = document.querySelectorAll('.team-member-input');
+
+            if (type === 'بەرپرسی تیم') {
+                box.style.display = 'block';
+                teamInputs.forEach(input => input.setAttribute('required', 'true'));
+            } else {
+                box.style.display = 'none';
+                teamInputs.forEach(input => input.removeAttribute('required'));
+            }
+        }
+
+        function showFileName(input, displayId) {
+            if (input.files && input.files[0]) {
+                document.getElementById(displayId).innerText = "فایل: " + input.files[0].name;
+            }
+        }
+
+        function toggleAdminPanel() {
+            const adminSec = document.getElementById('adminSection');
+            adminSec.style.display = adminSec.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function checkAdminPassword() {
+            const pass = document.getElementById('adminPassword').value;
+            if (pass === "7788") { // پاسۆردی نوێ
+                document.getElementById('resultsView').style.display = 'block';
+                alert("بە سەرکەوتوویی کرایەوە!");
+            } else {
+                alert("پاسۆرد هەڵەیە!");
+            }
+        }
+
+        function submitData(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "تکایە چاوەڕێ بگو، داتاکان دەنێردرێن...";
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxUpIgOPFE7uh7N23IUfJtMHTYsQNGNpF2uCG77Floiq66nuEOmDPusZz7cNY3Yw1UF/exec';
+
+            // وەرگرتنی فایلی وێنەکان و گۆڕینیان بۆ Base64
+            const frontFile = document.getElementById('frontCard').files[0];
+            const backFile = document.getElementById('backCard').files[0];
+
+            toBase64(frontFile, function(frontBase64) {
+                toBase64(backFile, function(backBase64) {
+                    
+                    const formData = {
+                        fullName: document.getElementById('fullName').value,
+                        phone: document.getElementById('phone').value,
+                        city: document.getElementById('city').value,
+                        committee: document.getElementById('committee').value,
+                        voterCard: document.getElementById('voterCard').value,
+                        voterStation: document.getElementById('voterStation').value,
+                        membershipType: document.getElementById('membershipType').value,
+                        frontImage: frontBase64 || "",
+                        backImage: backBase64 || ""
+                    };
+
+                    if (formData.membershipType === 'بەرپرسی تیم') {
+                        const members = [];
+                        document.querySelectorAll('.team-member-input').forEach((input, index) => {
+                            members.push(`ئەندام ${index+1}: ${input.value}`);
+                        });
+                        formData.teamMembers = members.join(" - ");
+                    } else {
+                        formData.teamMembers = "نییە";
+                    }
+
+                    fetch(scriptURL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(() => {
+                        alert("داتاکان بە سەرکەوتوویی نێرران بۆ گوگڵ داتا شیت!");
+                        document.getElementById('regForm').reset();
+                        document.getElementById('teamMembersBox').style.display = 'none';
+                        document.getElementById('frontName').innerText = "";
+                        document.getElementById('backName').innerText = "";
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = "ناردنی زانیارییەکان";
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        alert("کێشەیەک ڕویدا لە ناردنی داتاکان.");
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = "ناردنی زانیارییەکان";
+                    });
+
+                });
+            });
+        }
+
+        function toBase64(file, callback) {
+            if (!file) {
+                callback("");
+                return;
+            }
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => callback(reader.result);
+            reader.onerror = error => callback("");
+        }
+    </script>
 </body>
 </html>
