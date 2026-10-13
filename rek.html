@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پێگەی سەرەکی بەشی گەنجانی مەلبەندی ١ی سلێمانی</title>
+    <!-- Google Font: Noto Kufi Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #1b4332;
+            --secondary-green: #2d6a4f;
+            --accent-green: #40916c;
+            --light-green: #d8f3dc;
+            --bg-color: #f4f9f4;
+            --white: #ffffff;
+            --text-dark: #212529;
+            --gray: #6c757d;
+            --border-color: #ced4da;
+            --danger-red: #c9184a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: var(--white);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Circular EY Logo */
+        .ey-logo {
+            width: 75px;
+            height: 75px;
+            background: var(--white);
+            color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 3px solid var(--accent-green);
+            letter-spacing: 1px;
+        }
+
+        header h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .counters-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .counter-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .counter-badge span {
+            font-weight: 700;
+            color: var(--light-green);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Home View Buttons */
+        .home-view {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .home-view h2 {
+            margin-bottom: 2rem;
+            color: var(--primary-green);
+            font-size: 1.3rem;
+        }
+
+        .menu-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            justify-content: center;
+        }
+
+        .menu-btn {
+            background: var(--white);
+            border: 2px solid var(--secondary-green);
+            color: var(--primary-green);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            max-width: 350px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .menu-btn i {
+            font-size: 2.3rem;
+            color: var(--secondary-green);
+        }
+
+        .menu-btn:hover {
+            background: var(--secondary-green);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(45, 106, 79, 0.2);
+        }
+
+        .menu-btn:hover i {
+            color: var(--white);
+        }
+
+        .admin-trigger-btn {
+            background: transparent;
+            border: 1px dashed var(--secondary-green);
+            color: var(--secondary-green);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .admin-trigger-btn:hover {
+            background: var(--light-green);
+        }
+
+        /* Form Card Container */
+        .form-container {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: none;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-banner {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .form-banner h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+            color: var(--light-green);
+        }
+
+        .form-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-body {
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: #fafafa;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.15);
+        }
+
+        .file-upload-box {
+            border: 2px dashed var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            background: #fafafa;
+            cursor: pointer;
+        }
+
+        .file-upload-box input {
+            display: none;
+        }
+
+        .file-name-display {
+            font-size: 0.85rem;
+            color: var(--secondary-green);
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .team-box-container {
+            background: var(--light-green);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #b7e4c7;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .submit-btn {
+            background: var(--secondary-green);
+            color: var(--white);
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-green);
+        }
+
+        .back-nav-btn {
+            background: var(--light-green);
+            border: 1px solid var(--secondary-green);
+            color: var(--primary-green);
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .back-nav-btn:hover {
+            background: var(--secondary-green);
+            color: var(--white);
+        }
+
+        /* Admin Dashboard View */
+        .admin-view {
+            display: none;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .id-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .digital-id-card {
+            background: linear-gradient(135deg, #ffffff, #f0f7f4);
+            border: 2px solid var(--secondary-green);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="ey-logo">EY</div>
+        <h1>پێگەی سەرەکی بەشی گەنجانی مەلبەندی ١ی سلێمانی</h1>
+    </header>
+    <div class="container">
+        <div class="home-view">
+            <h2>بەخێربێن بۆ سیستەمی تۆمارکردن</h2>
+            <div class="menu-buttons">
+                <button class="menu-btn">
+                    <i class="fa-solid fa-user-plus"></i>
+                    تۆمارکردنی نوێ
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
