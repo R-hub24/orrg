@@ -67,7 +67,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 2rem auto;
             padding: 0 1rem;
             flex: 1;
@@ -210,6 +210,64 @@
             border-radius: 12px;
             border: 1px solid var(--border-color);
         }
+
+        /* ستایلی کارتی دیجیتاڵی (هەویە) */
+        .id-card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .digital-id-card {
+            background: linear-gradient(135deg, #ffffff, #f0f7f4);
+            border: 2px solid var(--secondary-green);
+            border-radius: 14px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .id-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid var(--light-green);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .id-logo-small {
+            width: 45px;
+            height: 45px;
+            background: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .id-body p {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .id-images {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .id-images img {
+            width: 50%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
     </style>
 </head>
 <body>
@@ -312,13 +370,14 @@
                 <div id="adminSection">
                     <h3>داخڵبوون بۆ بەشی ئەنجامەکان</h3>
                     <div class="form-group" style="margin-top: 10px;">
-                        <!-- لێرەدا هیچ نووسینێک لەسەر پاسۆردەکە نییە (Placeholder لادراوە) -->
+                        <!-- بێ نووسین لەسەر تێکست بۆکسی پاسۆرد -->
                         <input type="password" id="adminPassword">
                         <button class="submit-btn" style="padding: 10px; margin-top: 8px;" onclick="checkAdminPassword()">کردنەوەی ئەنجامەکان</button>
                     </div>
+                    <!-- لێرەدا ئەنجامەکان لە شێوەی کارتی ناسنامە (هەویە) دەردەکەون -->
                     <div id="resultsView" style="margin-top: 15px; display:none;">
-                        <p style="color: var(--secondary-green); font-weight: bold; margin-bottom: 10px;">بە سەرکەوتوویی کرایەوە! دەتوانیت ڕاستەوخۆ سەیری Google Sheetـەکەت بکەیت:</p>
-                        <a href="https://docs.google.com/spreadsheets" target="_blank" style="display:inline-block; background: var(--secondary-green); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold;">کردنەوەی گوگڵ داتا شیت 📊</a>
+                        <h3 style="color: var(--primary-green); margin-bottom: 10px;">کارتی ئەندامانی تۆمارکراو:</h3>
+                        <div id="idCardsContainer" class="id-card-grid"></div>
                     </div>
                 </div>
 
@@ -336,12 +395,10 @@
             tenContainer.appendChild(div);
         }
 
-        // رێگری کردن لە بەکارهێنانی پیتی ئینگلیزی
         function validateKurdish(input) {
             input.value = input.value.replace(/[a-zA-Z]/g, '');
         }
 
-        // تەنها قبوڵکردنی ژمارەی ئینگلیزی
         function validateEnglishNumbers(input) {
             input.value = input.value.replace(/[^0-9]/g, '');
         }
@@ -375,6 +432,7 @@
             const pass = document.getElementById('adminPassword').value;
             if (pass === "7788") {
                 document.getElementById('resultsView').style.display = 'block';
+                loadIDCards();
                 alert("بە سەرکەوتوویی کرایەوە!");
             } else {
                 alert("پاسۆرد هەڵەیە!");
@@ -387,23 +445,22 @@
             const voterCard = document.getElementById('voterCard').value;
             const phone = document.getElementById('phone').value;
 
-            // پشکنینی دوبارە نەبوونەوە (LocalStorage)
             let registeredCards = JSON.parse(localStorage.getItem('registered_voters') || '[]');
             let registeredPhones = JSON.parse(localStorage.getItem('registered_phones') || '[]');
 
             if (registeredCards.includes(voterCard)) {
-                alert("ئەم ژمارە کارتی دەنگدانە پێشتر تۆمار کراوە! ناتوانیت دووبارە بەکاری بهێنیتەوە.");
+                alert("ئەم ژمارە کارتی دەنگدانە پێشتر تۆمار کراوە!");
                 return;
             }
 
             if (registeredPhones.includes(phone)) {
-                alert("ئەم ژمارە مۆبایلە پێشتر تۆمار کراوە! ناتوانیت دووبارە بەکاری بهێنیتەوە.");
+                alert("ئەم ژمارە مۆبایلە پێشتر تۆمار کراوە!");
                 return;
             }
 
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
-            submitBtn.innerText = "تکایە چاوەڕێ بگو، داتاکان دەنێردرێن...";
+            submitBtn.innerText = "چاوەڕوان بە...";
 
             const scriptURL = 'https://script.google.com/macros/s/AKfycbxUpIgOPFE7uh7N23IUfJtMHTYsQNGNpF2uCG77Floiq66nuEOmDPusZz7cNY3Yw1UF/exec';
 
@@ -435,6 +492,11 @@
                         formData.teamMembers = "نییە";
                     }
 
+                    // پاشەکەوتکردن لە LocalStorage بۆ پیشاندانی ناو خۆیەتی لە کارتەکاندا
+                    let allMembers = JSON.parse(localStorage.getItem('all_registered_members') || '[]');
+                    allMembers.push(formData);
+                    localStorage.setItem('all_registered_members', JSON.stringify(allMembers));
+
                     fetch(scriptURL, {
                         method: 'POST',
                         mode: 'no-cors',
@@ -442,19 +504,21 @@
                         body: JSON.stringify(formData)
                     })
                     .then(() => {
-                        // پاشەکەوتکردن لە LocalStorage بۆ ڕێگری دوبارە تۆمارکردنەوە
                         registeredCards.push(voterCard);
                         registeredPhones.push(phone);
                         localStorage.setItem('registered_voters', JSON.stringify(registeredCards));
                         localStorage.setItem('registered_phones', JSON.stringify(registeredPhones));
 
-                        alert("داتاکان بە سەرکەوتوویی نێرران بۆ گوگڵ داتا شیت!");
-                        document.getElementById('regForm').reset();
-                        document.getElementById('teamMembersBox').style.display = 'none';
-                        document.getElementById('frontName').innerText = "";
-                        document.getElementById('backName').innerText = "";
-                        submitBtn.disabled = false;
-                        submitBtn.innerText = "ناردنی زانیارییەکان";
+                        submitBtn.innerText = "پیرۆزە بویت بە ئەندام";
+                        
+                        setTimeout(() => {
+                            document.getElementById('regForm').reset();
+                            document.getElementById('teamMembersBox').style.display = 'none';
+                            document.getElementById('frontName').innerText = "";
+                            document.getElementById('backName').innerText = "";
+                            submitBtn.disabled = false;
+                            submitBtn.innerText = "ناردنی زانیارییەکان";
+                        }, 2500);
                     })
                     .catch(error => {
                         console.error('Error!', error.message);
@@ -464,6 +528,42 @@
                     });
 
                 });
+            });
+        }
+
+        function loadIDCards() {
+            const container = document.getElementById('idCardsContainer');
+            container.innerHTML = "";
+            let allMembers = JSON.parse(localStorage.getItem('all_registered_members') || '[]');
+
+            if (allMembers.length === 0) {
+                container.innerHTML = "<p>هیچ ئەندامێک تۆمار نەکراوە.</p>";
+                return;
+            }
+
+            allMembers.forEach(m => {
+                let card = document.createElement('div');
+                card.className = 'digital-id-card';
+                card.innerHTML = `
+                    <div class="id-header">
+                        <div class="id-logo-small">EY</div>
+                        <div>
+                            <h4 style="color: var(--primary-green);">${m.fullName}</h4>
+                            <span style="font-size: 0.85rem; color: var(--secondary-green); font-weight: bold;">${m.membershipType}</span>
+                        </div>
+                    </div>
+                    <div class="id-body">
+                        <p><strong>شار:</strong> ${m.city} | <strong>کۆمیتە:</strong> ${m.committee}</p>
+                        <p><strong>مۆبایل:</strong> ${m.phone}</p>
+                        <p><strong>کارتی دەنگدان:</strong> ${m.voterCard} (${m.voterStation})</p>
+                        ${m.membershipType === 'بەرپرسی تیم' ? `<p style="font-size:0.85rem; color:#40916c;"><strong>ئەندامانی تیم:</strong> ${m.teamMembers}</p>` : ''}
+                        <div class="id-images">
+                            ${m.frontImage ? `<img src="${m.frontImage}" alt="پێشەوە">` : '<div style="width:50%; text-align:center; padding:20px; font-size:0.8rem;">وێنە نییە</div>'}
+                            ${m.backImage ? `<img src="${m.backImage}" alt="پشتەوە">` : '<div style="width:50%; text-align:center; padding:20px; font-size:0.8rem;">وێنە نییە</div>'}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
             });
         }
 
